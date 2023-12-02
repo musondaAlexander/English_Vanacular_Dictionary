@@ -54,12 +54,14 @@ class _MalayalamToEnglishListState extends State<MalayalamToEnglishList> {
         future: getDictionaryData(),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
+            dynamic data = snapshot.data;
             refactorData(snapshot.data);
             return Column(
               children: [
                 TextField(
                   onChanged: (text) {
-                    filterWords(text, refactoredData);
+                    String capitalizedText = capitalize(text);
+                    filterWords(capitalizedText, data);
                   },
                   decoration: InputDecoration(
                       fillColor: Theme.of(context).primaryColorLight,
@@ -106,5 +108,12 @@ class _MalayalamToEnglishListState extends State<MalayalamToEnglishList> {
           }
           return const Loading();
         });
+  }
+
+  String capitalize(String input) {
+    if (input == null || input.isEmpty) {
+      return input;
+    }
+    return input[0].toUpperCase() + input.substring(1);
   }
 }

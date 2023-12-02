@@ -44,7 +44,8 @@ class _EnglishToMalayalamListState extends State<EnglishToMalayalamList> {
               children: [
                 TextField(
                   onChanged: (text) {
-                    filterWords(text, data);
+                    String capitalizedText = capitalize(text);
+                    filterWords(capitalizedText, data);
                   },
                   decoration: InputDecoration(
                       fillColor: Theme.of(context).primaryColorLight,
@@ -82,5 +83,12 @@ class _EnglishToMalayalamListState extends State<EnglishToMalayalamList> {
           }
           return Loading();
         });
+  }
+
+  String capitalize(String input) {
+    if (input == null || input.isEmpty) {
+      return input;
+    }
+    return input[0].toUpperCase() + input.substring(1);
   }
 }

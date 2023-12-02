@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const Home(title: 'English Dictionary'),
         '/malayalam': (context) =>
-            const MalayalamToEnglish(title: 'Chewa to English Dictionary'),
+            const MalayalamToEnglish(title: 'Chewa to English'),
         '/word-details': (context) => const WordDetails()
       },
       initialRoute: '/',

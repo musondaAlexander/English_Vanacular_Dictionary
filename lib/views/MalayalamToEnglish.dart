@@ -7,6 +7,7 @@ import 'package:offlineengvandictionary/online_dictionary/config/configs.dart';
 import 'package:offlineengvandictionary/online_dictionary/presentation/bloc/dictionary_bloc.dart';
 import 'package:offlineengvandictionary/views/about.dart';
 import 'package:offlineengvandictionary/widgets/MalayalamToEnglishList.dart';
+import 'package:offlineengvandictionary/widgets/crud.dart';
 
 class MalayalamToEnglish extends StatefulWidget {
   const MalayalamToEnglish({Key? key, required this.title}) : super(key: key);
@@ -95,7 +96,7 @@ class _MalayalamToEnglishState extends State<MalayalamToEnglish> {
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 8,
             ),
             Material(
               child: InkWell(
@@ -123,14 +124,48 @@ class _MalayalamToEnglishState extends State<MalayalamToEnglish> {
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 8,
+            ),
+            Material(
+              child: InkWell(
+                onTap: () {
+                  Navigator.of(context).pop(); // Close the drawer
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DictionaryWidget()),
+                  );
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(26),
+                    color: Theme.of(context).primaryColorLight,
+                  ),
+                  child: const Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Add word",
+                        style: TextStyle(fontWeight: FontWeight.w600),
+                      )),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 3,
             ),
           ],
         ),
       )),
       appBar: AppBar(
-        title: Text(widget.title),
-      ),
+          // leading: const Icon(Icons.book, color: Colors.white),
+          title: Row(
+        children: [
+          const Icon(Icons.book, color: Colors.white),
+          const SizedBox(width: 10),
+          Text(widget.title),
+        ],
+      )),
       body: const MalayalamToEnglishList(),
     );
   }
